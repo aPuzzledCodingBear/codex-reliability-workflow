@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.env
+.env.*
+verification.json
+.reliability/
+reliability/backups/
+*.zip
+*prompt-input*.json
