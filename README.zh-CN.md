@@ -26,7 +26,7 @@ python3 install.py
 
 通过 `--target PATH` 指定 Codex home；默认读取 `CODEX_HOME`，未设置时使用 `~/.codex`。安装后新建会话或重启客户端；已有会话可能仍保留旧指令。
 
-安装器在全局 `AGENTS.md` 及已有的 `AGENTS.override.md` 中合并带标记规则，安装八个角色及 `reliability/WORKFLOW.md`，允许最多三个子代理，并将主模型和默认子代理设为 `gpt-6.1-sol`、medium 推理。保留其他指令和权限、认证、供应商、MCP、插件等设置。写入前备份原文件，重复安装不会重复添加规则。
+安装器在全局 `AGENTS.md` 及已有的 `AGENTS.override.md` 中合并带标记规则，安装九个角色及 `reliability/WORKFLOW.md`，允许最多三个子代理，并将主模型和默认子代理设为 `gpt-6.2-sol`、medium 推理。保留其他指令和权限、认证、供应商、MCP、插件等设置。写入前备份原文件，重复安装不会重复添加规则。
 
 对整个 TOML 解析结果核对，只允许预定的设置变化；不支持的布局在写入前停止，避免误改字符串中的内容。
 
@@ -34,10 +34,11 @@ python3 install.py
 
 | 角色 | 请求模型 | 推理强度 |
 | --- | --- | --- |
-| 主编排、普通执行代理 | `gpt-6.1-sol` | medium |
-| 困难任务规划代理 | `gpt-6.1-sol` | high |
-| 计划审查、验收及增强审计 | `gpt-6-astra` | high |
-| 明确、低风险的轻量代理 | `gpt-6-luna` | high |
+| 主编排、普通执行代理 | `gpt-6.2-sol` | medium |
+| 困难任务规划代理 | `gpt-6.2-sol` | high |
+| 计划审查、验收及增强审计 | `gpt-6.2-astra` | high |
+| 明确、低风险的轻量代理 | `gpt-6-luna` | medium |
+| 视觉理解、电脑操作专项代理 | `gpt-6.1-terra` | medium |
 
 这些是请求配置，不代表已验证模型可用。若没有对应模型，请明确选择可用替代，修改 `POLICY.md` 和角色 TOML 后重新安装。若更换主模型或默认子代理模型，还需修改 `install.py` 中的设置及语义保留校验预期。不能静默降低审核模型。模型名称与配置支持可能随客户端版本变化。
 
@@ -75,3 +76,5 @@ python3 install.py --dry-run
 - [Towards a Science of Scaling Agent Systems](https://arxiv.org/abs/2512.08296)
 
 初次发布尚未选择许可证；公开仓库本身不等于授予开源许可。
+
+模型选择与带日期的定价依据：[English / 中文](MODEL-SELECTION.md)。

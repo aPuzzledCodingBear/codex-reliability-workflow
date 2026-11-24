@@ -64,18 +64,18 @@ def desired(target):
     old = config.read_text() if config.exists() else ''
     before = tomllib.loads(old)
     # Do not alter sandbox, approval, provider, authentication, MCP, or plugins.
-    new = set_table(old, None, {'model': 'gpt-6.1-sol', 'model_reasoning_effort': 'medium'})
+    new = set_table(old, None, {'model': 'gpt-6.2-sol', 'model_reasoning_effort': 'medium'})
     new = set_table(new, 'agents', {'enabled': True, 'max_concurrent_threads_per_session': 3,
-                                 'default_subagent_model': 'gpt-6.1-sol',
+                                 'default_subagent_model': 'gpt-6.2-sol',
                                  'default_subagent_reasoning_effort': 'medium'})
     # The textual editor must never silently modify TOML string contents or
     # unrelated settings. Compare the entire parsed document to the exact
     # authorized semantic change, before creating backups or writing files.
     expected = copy.deepcopy(before)
-    expected.update(model='gpt-6.1-sol', model_reasoning_effort='medium')
+    expected.update(model='gpt-6.2-sol', model_reasoning_effort='medium')
     expected.setdefault('agents', {}).update(
         enabled=True, max_concurrent_threads_per_session=3,
-        default_subagent_model='gpt-6.1-sol',
+        default_subagent_model='gpt-6.2-sol',
         default_subagent_reasoning_effort='medium')
     if tomllib.loads(new) != expected:
         raise ValueError('Unsupported TOML layout: semantic preservation check failed; no files changed. Use a TOML-aware editor for this host.')

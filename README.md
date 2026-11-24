@@ -26,7 +26,7 @@ python3 install.py
 
 `--target PATH` selects a Codex home. Otherwise the installer uses `CODEX_HOME`, falling back to `~/.codex`. Start a new session or restart the client afterward; existing sessions can retain old instructions.
 
-The installer merges a marked block into global `AGENTS.md` and an existing `AGENTS.override.md`, installs eight custom roles and `reliability/WORKFLOW.md`, enables up to three child threads, and sets main/default child model to `gpt-6.1-sol` with medium reasoning. It preserves unrelated instructions and settings, including permissions, authentication, provider, MCP and plugins. Replaced files are backed up. Repeated installation is idempotent.
+The installer merges a marked block into global `AGENTS.md` and an existing `AGENTS.override.md`, installs nine custom roles and `reliability/WORKFLOW.md`, enables up to three child threads, and sets main/default child model to `gpt-6.2-sol` with medium reasoning. It preserves unrelated instructions and settings, including permissions, authentication, provider, MCP and plugins. Replaced files are backed up. Repeated installation is idempotent.
 
 The complete parsed TOML is checked against exactly the intended changes. Unsupported layouts fail before writes rather than silently changing unrelated content.
 
@@ -34,10 +34,11 @@ The complete parsed TOML is checked against exactly the intended changes. Unsupp
 
 | Role | Requested model | Reasoning |
 | --- | --- | --- |
-| Main orchestrator / worker | `gpt-6.1-sol` | medium |
-| Difficult planner | `gpt-6.1-sol` | high |
-| Plan / acceptance / enhanced reviewers | `gpt-6-astra` | high |
-| Narrow low-risk worker | `gpt-6-luna` | high |
+| Main orchestrator / worker | `gpt-6.2-sol` | medium |
+| Difficult planner | `gpt-6.2-sol` | high |
+| Plan / acceptance / enhanced reviewers | `gpt-6.2-astra` | high |
+| Narrow low-risk worker | `gpt-6-luna` | medium |
+| Visual / computer-use specialist | `gpt-6.1-terra` | medium |
 
 These are requested settings, not proof of model access. If a model is unavailable, explicitly choose an available replacement and update `POLICY.md` and the role TOML files before reinstalling. If changing the main/default child model, also update its settings and semantic-preservation expectations in `install.py`. Do not silently downgrade reviews. Names and supported settings may change between client releases.
 
@@ -75,3 +76,5 @@ These are behavioral instructions, not hard CI enforcement, a separate read-only
 - [Towards a Science of Scaling Agent Systems](https://arxiv.org/abs/2512.08296)
 
 No license has been selected for this initial publication; public availability alone does not grant an open-source license.
+
+Model selection and dated pricing evidence: [English / 中文](MODEL-SELECTION.md).
